@@ -1,0 +1,60 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Transferência</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()" style="color: red;">
+        Fechar
+        <ion-icon name="close-outline" (click)="closeModal()"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item class="ion-margin-top">
+      <ion-label>De:</ion-label>
+      <ion-select [formControl]="formPlayer.get('input_de')" interface="popover">
+        <ion-select-option *ngFor="let player of players" [value]="player.ID">{{ player.NOME }} - R$ {{ convertMoney(player.VALOR) }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div
+      class="error"
+      *ngIf="formPlayer.get('input_de').invalid && (formPlayer.get('input_de').dirty || formPlayer.get('input_de').touched)"
+      >Campo DE qual jogar é obrigatório</div>
+
+    <ion-item class="ion-margin-top">
+      <ion-label>Para:</ion-label>
+      <ion-select [formControl]="formPlayer.get('input_para')" interface="popover">
+        <ion-select-option *ngFor="let player of playersFor" [value]="player.ID">{{ player.NOME }} - R$ {{ convertMoney(player.VALOR) }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div
+      class="error"
+      *ngIf="formPlayer.get('input_para').invalid && (formPlayer.get('input_para').dirty || formPlayer.get('input_para').touched)"
+      >Campo PARA qual jogar é obrigatório</div>
+
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Valor</ion-label>
+      <ion-input type="text" [formControl]="formPlayer.get('input_valor')" [brmasker]="{numberAndTousand: true, thousand: '.', type:'num', moneyInitHasInt:false}" maxlength="9" minlength="2"></ion-input>
+    </ion-item>
+    <div
+      class="error"
+      *ngIf="formPlayer.get('input_valor').errors?.required && (formPlayer.get('input_valor').dirty || formPlayer.get('input_valor').touched)"
+      >Campo VALOR é obrigatório</div>
+      <div
+      class="error"
+      *ngIf="formPlayer.get('input_valor').errors?.minlength"
+      >Mínimo de 2 casas decimais</div>
+      <div
+      class="error"
+      *ngIf="formPlayer.get('input_valor').errors?.maxlength"
+      >Máximo de 9 casas decimais</div>
+
+    <ion-button expand="block" class="ion-margin-top" (click)="submit(formPlayer.value)">
+      CONFIRMAR
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+    </ion-button>
+  </ion-list>
+
+</ion-content>

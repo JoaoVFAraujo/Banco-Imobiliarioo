@@ -1,0 +1,8 @@
+{
+  "name": "BancoImobiliario",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

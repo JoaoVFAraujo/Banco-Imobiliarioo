@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Carteira</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item *ngFor="let player of players" class="ion-margin-bottom" (click)="presentModal(player.ID)">
+      <ion-label position="floating">{{ player.NOME }}</ion-label>
+      <ion-input type="text" readonly [brmasker]="{numberAndTousand: true, thousand: '.'}" [value]="convertMoney(player.VALOR)"></ion-input>
+      <ion-icon name="person-circle-outline" slot="start" [style.color]="player.COR"></ion-icon>
+      <span class="falencia" *ngIf="player.VALOR <= 0">Hipoteque ou declare falência</span>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="presentModal()">
+    TRANSFERIR
+    <ion-icon name="cash-outline" slot="start"></ion-icon>
+  </ion-button>
+
+</ion-content>
