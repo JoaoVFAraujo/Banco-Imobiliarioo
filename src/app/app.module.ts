@@ -14,6 +14,7 @@ import { BrMaskerModule } from 'br-mask';
 import { TransferComponent } from './transfer/transfer.component';
 import { DatabaseProvider } from './services/database/database';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     DatabaseProvider,

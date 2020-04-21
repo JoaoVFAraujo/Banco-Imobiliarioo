@@ -51,7 +51,7 @@
       *ngIf="formPlayer.get('input_valor').errors?.maxlength"
       >Máximo de 9 casas decimais</div>
 
-    <ion-button expand="block" class="ion-margin-top" (click)="submit(formPlayer.value)">
+    <ion-button expand="block" class="ion-margin-top" (click)="submit(formPlayer.value)" [disabled]="formPlayer.invalid">
       CONFIRMAR
       <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
     </ion-button>
