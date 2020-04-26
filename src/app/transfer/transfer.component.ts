@@ -37,10 +37,12 @@ export class TransferComponent {
 
   submit(value) {
     const indexUserIn = this.players.findIndex(index => index.ID == value.input_de);
+    const difference = (+value.input_valor.replace(".", "") - this.players[indexUserIn].VALOR).toString();
     if (this.players[indexUserIn].VALOR >= +value.input_valor.replace(".", "")) {
       this.transferMoney(value);
     } else {
-      this.presentToast('Não pode realizar transição, Negativirá !', 2500);
+      this.presentToast(`Não pode realizar transição, falta R$ 
+      ${this.convertMoney(difference)}`, 2500);
     }
   }
 
