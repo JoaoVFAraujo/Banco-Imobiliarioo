@@ -41,7 +41,7 @@ export class TransferComponent {
     if (this.players[indexUserIn].VALOR >= +value.input_valor.replace(".", "")) {
       this.transferMoney(value);
     } else {
-      this.presentToast(`Não pode realizar transição, falta R$ 
+      this.presentToast(`Não pode realizar transição, falta
       ${this.convertMoney(difference)}`, 2500);
     }
   }
@@ -116,6 +116,7 @@ export class TransferComponent {
 
   buscarAllPlayer(idPlayer) {
     this.databaseProvider.getAllPlayers().subscribe(allPlayers => {
+      // allPlayers.filter(v => v.VALOR > '0'); MODIFICAR COM CHAVE DE FALENCIA;
       this.players = allPlayers;
       setTimeout(() => {
         this.formPlayer.get('input_de').setValue(idPlayer);
