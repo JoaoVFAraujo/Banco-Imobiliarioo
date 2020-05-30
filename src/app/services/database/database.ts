@@ -13,7 +13,7 @@ export class DatabaseProvider {
   }
 
   getPlayers(): Observable<any> {
-    const URL = `http://www.goprofissa.com/sbi/selectJogadores.php`;
+    const URL = `https://www.goprofissa.com/sbi/selectJogadores.php`;
 
     return this.http.get<any>(URL, this.fullJson())
       .pipe(
@@ -23,7 +23,7 @@ export class DatabaseProvider {
   }
   
   getAllPlayers(): Observable<any> {
-    const URL = `http://www.goprofissa.com/sbi/selectJogadoresOption.php`;
+    const URL = `https://www.goprofissa.com/sbi/selectJogadoresOption.php`;
 
     return this.http.get<any>(URL, this.fullJson())
       .pipe(
@@ -33,7 +33,7 @@ export class DatabaseProvider {
   }
 
   transferMoney(value): Observable<any> {
-    const URL = `http://www.goprofissa.com/sbi/updateTransferencia.php`;
+    const URL = `https://www.goprofissa.com/sbi/updateTransferencia.php`;
     const body = JSON.stringify(value);
 
     return this.http.put<any>(URL, body, this.fullJson())
@@ -44,7 +44,7 @@ export class DatabaseProvider {
   }
 
   resetValues(): Observable<any> {
-    const URL = `http://www.goprofissa.com/sbi/updateReiniciar.php`;
+    const URL = `https://www.goprofissa.com/sbi/updateReiniciar.php`;
 
     return this.http.put<any>(URL, {}, this.fullJson())
       .pipe(
